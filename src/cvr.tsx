@@ -33,9 +33,6 @@ function ShowResults(props: Props) {
         setGraphLink(graphData);
       }
 
-      // The following code is for the Proff link and should be implemented in the future.
-      const proffResults = helpers.returnTopProffResults("just eat");
-
       const proffLink = await helpers.returnProffLink(cvr);
       if (proffLink != null) {
         setProffLink( proffLink );

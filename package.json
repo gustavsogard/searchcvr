@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "searchcvr",
   "title": "SearchCVR",
-  "description": "Your personal search engince for danish CVR data.",
+  "description": "Your personal search engine for danish CVR data.",
   "icon": "cvr-icon.png",
   "author": "gustavs",
   "categories": [

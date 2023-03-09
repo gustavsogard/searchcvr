@@ -18,6 +18,7 @@ async function returnAccountingData(data) {
     });
 
     accountingLinksXML = accountingLinksXML.slice(-4);
+    console.log(accountingLinksXML);
 
     return accountingLinksXML;
 }
@@ -55,12 +56,20 @@ async function parseXML(text) {
         result = xmlDoc.getElementsByTagName("e:ProfitLoss")[0].childNodes[0].nodeValue / 1000;
     } else if (xmlDoc.getElementsByTagName("fsa:ProfitLoss")[0] !== undefined) {
         result = xmlDoc.getElementsByTagName("fsa:ProfitLoss")[0].childNodes[0].nodeValue / 1000;
+    } else if (xmlDoc.getElementsByTagName("g:ProfitLoss")[0] !== undefined) {
+        result = xmlDoc.getElementsByTagName("g:ProfitLoss")[0].childNodes[0].nodeValue / 1000;
     }
 
     if (xmlDoc.getElementsByTagName("e:GrossResult")[0] !== undefined) {
         gross = xmlDoc.getElementsByTagName("e:GrossResult")[0].childNodes[0].nodeValue / 1000;
     } else if (xmlDoc.getElementsByTagName("fsa:GrossProfitLoss")[0] !== undefined) {
         gross = xmlDoc.getElementsByTagName("fsa:GrossProfitLoss")[0].childNodes[0].nodeValue / 1000;
+    } else if (xmlDoc.getElementsByTagName("g:GrossProfitLoss")[0] !== undefined) {
+        gross = xmlDoc.getElementsByTagName("g:GrossProfitLoss")[0].childNodes[0].nodeValue / 1000;
+    } else if (xmlDoc.getElementsByTagName("e:GrossProfitLoss")[0] !== undefined) {
+        gross = xmlDoc.getElementsByTagName("e:GrossProfitLoss")[0].childNodes[0].nodeValue / 1000;
+    } else if (xmlDoc.getElementsByTagName("fsa:GrossResult")[0] !== undefined) {
+        gross = xmlDoc.getElementsByTagName("fsa:GrossResult")[0].childNodes[0].nodeValue / 1000;
     }
 
     return [result, gross];

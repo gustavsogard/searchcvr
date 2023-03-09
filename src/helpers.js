@@ -18,7 +18,6 @@ async function returnAccountingData(data) {
     });
 
     accountingLinksXML = accountingLinksXML.slice(-4);
-    console.log(accountingLinksXML);
 
     return accountingLinksXML;
 }

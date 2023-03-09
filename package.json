@@ -3,7 +3,7 @@
   "name": "searchcvr",
   "title": "SearchCVR",
   "description": "Din personlige bro til virksomhedsdata.",
-  "icon": "broff-icon.png",
+  "icon": "cvr-icon.png",
   "author": "gustavs",
   "categories": [
     "Applications"

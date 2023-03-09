@@ -107,7 +107,13 @@ async function returnTopProffResults(name) {
 
     let htmlDoc = parser.parseFromString(response);
 
-    let results = htmlDoc.getElementsByClassName("search-block-wrap");
+    let results = htmlDoc.getElementsByClassName("search-container-wrap")[0];
+    if (results) {
+        results = results.getElementsByClassName("search-block-wrap");
+    } else {
+        results = [];
+    }
+
     let resultsArray = [];
 
     if (results.length !== 0) {

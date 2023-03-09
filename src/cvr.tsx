@@ -56,14 +56,17 @@ function ShowResults(props: Props) {
       navigationTitle={data['name']}
       metadata={
         <Detail.Metadata>
-          <Detail.Metadata.Label title="Startdato" text={data['startdate']} />
-          <Detail.Metadata.Label title="By" text={data['city']} />
-          <Detail.Metadata.Label title="Antal ansatte" text={data['employees']} />
-          <Detail.Metadata.Label title="Industri" text={data['industrydesc']} />
+          <Detail.Metadata.Label title="Start date" text={data['startdate']} />
+          <Detail.Metadata.Label title="City" text={data['city']} />
+          <Detail.Metadata.Label title="Employees" text={data['employees']} />
+          <Detail.Metadata.Label title="Industry" text={data['industrydesc']} />
           <Detail.Metadata.Label title="Type" text={data['companydesc']} />
-          <Detail.Metadata.Separator />
-          <Detail.Metadata.Link title="Link" target={proffLink} text="Se virksomhed på Proff" />
         </Detail.Metadata>
+      }
+      actions={
+        <ActionPanel>
+          <Action.OpenInBrowser title="See company on Proff" url={proffLink} />
+        </ActionPanel>
       }
     />
   );
@@ -79,12 +82,12 @@ function ShowSearchResults(props: Props) {
       const results = await helpers.returnTopProffResults(name);
       const formattedResults = results.map((result: any) => (
         <List.Item
-          key={result.cvr}
+          key={result.cvr+20*Math.random()}
           title={result.name}
           actions={
             <ActionPanel>
               <Action
-                title="Vælg"
+                title="Choose"
                 onAction={() => {
                   push(<ShowResults query={result.cvr} />);
                 }}
@@ -99,7 +102,7 @@ function ShowSearchResults(props: Props) {
   }, []);
 
   return (
-    <List filtering={false} navigationTitle={"Søgning"}>
+    <List filtering={true} navigationTitle={"Search"}>
       {results}
     </List>
   );
@@ -124,14 +127,14 @@ function Command(props: { onSubmit: (values: { query: string }) => void }) {
     <Form
       actions={
         <ActionPanel>
-          <Action.SubmitForm title="Hent data" onSubmit={props.onSubmit} />
+          <Action.SubmitForm title="Get results" onSubmit={props.onSubmit} />
         </ActionPanel>
       }
     >
       <Form.TextField
         id="query"
-        title="Søgning"
-        placeholder="Indtast navn eller cvr..."  
+        title="Search"
+        placeholder="Enter name or cvr..."  
         />
     </Form>
   );

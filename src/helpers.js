@@ -115,12 +115,9 @@ async function returnTopProffResults(name) {
 
     let htmlDoc = parser.parseFromString(response);
 
-    let results = htmlDoc.getElementsByClassName("search-container-wrap")[0];
-    if (results) {
-        results = results.getElementsByClassName("search-block-wrap");
-    } else {
-        results = [];
-    }
+    let results = htmlDoc.getElementsByClassName("MuiPaper-elevation1")[1];
+    results = results.getElementsByClassName("MuiGrid-root MuiGrid-container SearchResultCard-card");
+    if (!results) return [];
 
     let resultsArray = [];
 
@@ -128,7 +125,7 @@ async function returnTopProffResults(name) {
         for (const element of results) {
             resultsArray.push({
                 name: element.getElementsByClassName("addax-cs_hl_hit_company_name_click")[0].textContent,
-                cvr: element.getElementsByClassName("org-number")[0].getAttribute("data-id")
+                cvr: element.getElementsByClassName("MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover")[1].getAttribute("href").slice(-8),
             });
         }
     }
